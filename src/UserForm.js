@@ -15,16 +15,18 @@ const UserForm = ({ onUserAdd }) => {
   return (
     <form onSubmit={submitFormHandler}>
       <div>
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           autoFocus
         />
       </div>
       <div>
-        <label>Email</label>
+        <label htmlFor="email">Enter email</label>
         <input
+          id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
