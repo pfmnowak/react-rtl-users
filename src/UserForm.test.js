@@ -41,4 +41,27 @@ describe("User Form component", () => {
     expect(mock).toHaveBeenCalledTimes(1);
     expect(mock).toBeCalledWith({ name: "Roman", email: "roman@gmail.com" });
   });
+
+  test("it clears the inputs when the form is submitted", () => {
+    render(<UserForm onUserAdd={() => {}} />);
+
+    const nameInput = screen.getByRole("textbox", {
+      name: /name/i,
+    });
+    const emailInput = screen.getByRole("textbox", {
+      name: /email/i,
+    });
+    const button = screen.getByRole("button");
+
+    userEvent.click(nameInput);
+    userEvent.keyboard("Roman");
+
+    userEvent.click(emailInput);
+    userEvent.keyboard("roman@gmail.com");
+
+    userEvent.click(button);
+
+    expect(nameInput).toHaveValue("");
+    expect(emailInput).toHaveValue("");
+  });
 });

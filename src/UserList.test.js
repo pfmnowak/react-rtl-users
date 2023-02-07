@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import UserList from "./UserList";
 
-const renderComponent = () => {
+function renderComponent() {
   const users = [
     {
       name: "Jane",
@@ -15,15 +15,13 @@ const renderComponent = () => {
   render(<UserList users={users} />);
 
   return { users };
-};
+}
 
 describe("UserList component", () => {
   test("it renders one row per user", () => {
     const { users } = renderComponent();
-    // const { container } = render(<UserList users={users} />);
 
     // screen.logTestingPlaygroundURL();
-    // const rows = container.querySelectorAll("tbody tr");
     const rows = within(screen.getByTestId("users")).getAllByRole("row");
 
     expect(rows).toHaveLength(users.length);
